@@ -2,6 +2,8 @@
 
 A assembly program, the robot needs to turn on the light.
 
+![photo](https://user-images.githubusercontent.com/32064166/79925422-b76df000-8410-11ea-98da-e2f1f233da9b.PNG)
+
 ## Getting Started
 
 To run and test the aplication, you basically need to install the EMU8086 and have their own license.
