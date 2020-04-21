@@ -1,15 +1,9 @@
 
     
 #start=robot.exe#
-
-
 name "robot"     
 
-
 r_port equ 9
-
-
-; multi-segment executable file template.
 
 
 data segment
@@ -20,14 +14,12 @@ stack segment
     dw   128  dup(0)
 ends
 
-
 code segment
 start:
 ; set segment registers:
     mov ax, data
     mov ds, ax
     mov es, ax
-
 
     
 leitura:    
@@ -42,19 +34,15 @@ leitura:
     mov dx,10
     in  al,dx  
     
-    cmp al, 0      ; nada
+    cmp al, 0      ; nothing go ahead
     jz frente
     
-    cmp al, 11111111b    ; parede
+    cmp al, 11111111b    ; wall
     jz cont  
     
-    cmp al, 00001000b       ; luz acesa? apaga e terminou
+    cmp al, 00001000b       ; turn on light
     jz switch_on_lamp 
     
-    
-    
-
-   
         
     cont:      
     call random_turn
@@ -76,16 +64,10 @@ leitura:
     
     cmp al, 0     
     jz frente
-    
-    
-     
-    
-
-    
-    jmp leitura
-      
+          
+    jmp leitura     
             
-    mov ax, 4c00h ; exit to operating system.
+    mov ax, 4c00h
     int 21h
     
 ;==================================
@@ -130,14 +112,14 @@ leitura:
         and ch,00000001b         
         
         
-        cmp ch, 00000001b    ; se nao for 1, vai p direita
+        cmp ch, 00000001b  
         jnz move_direita
         
   
 
         mov dx,9
         mov al,00000010b
-        out dx,al        ; se retornar 1 vai pra esquerda
+        out dx,al       
         ret             
                       
     move_direita: 
@@ -147,17 +129,11 @@ leitura:
         out dx,al 
         ret
         
-        
-    ;move_esquerda:
-        ;call wait_robot
-        ;mov dx,9
-        ;mov al,00000010b
-        ;out dx,al 
  
     random_turn endp    
 ends
 
 
-end start ; set entry point and stop the assembler.
+end start 
  
 
